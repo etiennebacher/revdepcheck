@@ -39,7 +39,7 @@ deps_install_opts <- function(pkgdir, pkgname, quiet = FALSE, env = character())
     args = args,
     system_profile = FALSE,
     user_profile = FALSE,
-    env = c(CRANCACHE_REPOS = "cran,bioc",
+    env = c(CRANCACHE_REPOS = "cran",
             CRANCACHE_QUIET = if (quiet) "yes" else "no",
             env)
   )
