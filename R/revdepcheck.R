@@ -144,12 +144,12 @@ revdep_install <- function(pkg = ".", quiet = FALSE, env = character()) {
   fail_on_warn <- Sys.info()[["sysname"]] != "Darwin" || R.Version()$arch != "aarch64"
 
   with_envvar(
-    c(CRANCACHE_REPOS = "cran,bioc", CRANCACHE_QUIET = "yes", env),
+    c(CRANCACHE_REPOS = "cran", CRANCACHE_QUIET = "yes", env),
     with_libpaths(
       dir_find(pkg, "old"),
       rlang::with_options(
         warn = if (fail_on_warn) 2 else 1,
-        install_packages(pkgname, quiet = quiet, repos = get_repos(bioc = TRUE), upgrade = "always")
+        install_packages(pkgname, quiet = quiet, repos = get_repos(bioc = FALSE), upgrade = "always")
       )
     )
   )
@@ -158,12 +158,12 @@ revdep_install <- function(pkg = ".", quiet = FALSE, env = character()) {
   "!DEBUG Installing new version from `pkg`"
   message("Installing DEV version of ", pkgname)
   with_envvar(
-    c(CRANCACHE_REPOS = "cran,bioc", CRANCACHE_QUIET = "yes", env),
+    c(CRANCACHE_REPOS = "cran", CRANCACHE_QUIET = "yes", env),
     with_libpaths(
       dir_find(pkg, "new"),
       rlang::with_options(
         warn = if (fail_on_warn) 2 else 1,
-        install_local(pkg, quiet = quiet, repos = get_repos(bioc = TRUE), force = TRUE, upgrade = "always")
+        install_local(pkg, quiet = quiet, repos = get_repos(bioc = FALSE), force = TRUE, upgrade = "always")
       )
     )
   )
