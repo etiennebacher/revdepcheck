@@ -65,7 +65,7 @@ deps_opts <- function(pkgname, exclude = character()) {
   ## warning
   "!DEBUG dropping unavailable dependencies"
   available <- with_envvar(
-    c(CRANCACHE_REPOS = "cran,bioc", CRANCACHE_QUIET = "yes"),
+    c(CRANCACHE_REPOS = "cran", CRANCACHE_QUIET = "yes"),
     rownames(available_packages(repos = repos))
   )
   packages <- intersect(packages, available)
